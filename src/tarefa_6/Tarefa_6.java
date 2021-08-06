@@ -1,6 +1,6 @@
-package tarefa_5;
+package tarefa_6;
 
-public class Tarefa_5 {
+public class Tarefa_6 {
 
     public static void main(String[] args) {
         Pessoa j = new Pessoa("joão","masculino",18);

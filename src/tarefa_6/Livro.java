@@ -1,5 +1,5 @@
 
-package tarefa_5;
+package tarefa_6;
 
 public class Livro implements Publicação {
     private String titulo, autor; 
