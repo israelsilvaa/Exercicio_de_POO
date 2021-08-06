@@ -7,8 +7,7 @@ package tarefa_5;
 public class Pessoa {
     private String  nome, sexo;
     private int idade;
-    Livro livro;
-    Livro L = new Livro("a pequna orfã"," carla",3,4);
+
 
     public Pessoa(String nome, String sexo, int idade) {
         this.nome = nome;
@@ -23,10 +22,11 @@ public class Pessoa {
     
     public void Ler(Pessoa pessoa, Livro livro){
         
-        livro.setLeitor(pessoa.getNome());
+        livro.setLeitor(pessoa);
         livro.abrir();
+        livro.detalhes(pessoa);
         
-        System.out.println("O "+livro.getLeitor());
+        System.out.println("O "+livro.getLeitor()+" está lendo o livro");
     }
 
     public String getNome() {

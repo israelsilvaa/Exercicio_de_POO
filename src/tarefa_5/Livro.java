@@ -2,20 +2,21 @@
 package tarefa_5;
 
 public class Livro implements Publicação {
-    private String titulo, autor, leitor; 
-    private int totPagi, pagAtual;
+    private String titulo, autor; 
+    private int totPagi, pagAtual= 1;
     private boolean aberto = false;
+    private Pessoa leitor;
 
-    public Livro(String titulo, String autor, int totPagi, int pagAtual) {
+    public Livro(String titulo, String autor, Pessoa leitor, int totPagi) {
         this.titulo = titulo;
         this.autor = autor;
+        this.leitor = leitor;
         this.totPagi = totPagi;
-        this.pagAtual = pagAtual;
     }
     
     public void detalhes(Pessoa pessoa){
         System.out.println("Titulo:"+this.getTitulo()+"  Autor:"+this.getAutor());
-        System.out.println("Totalde paginas:"+this.getTotPagi()+" Pagina atual:");
+        System.out.println("Totalde paginas:"+this.getTotPagi()+" Pagina atual:"+this.getPagAtual());
         System.out.println("Estado do livro:"+this.getAberto()+" Leitor:"+pessoa.getNome()+"\n");
     }
     
@@ -36,10 +37,10 @@ public class Livro implements Publicação {
     }
 
     public String getLeitor() {
-        return leitor;
+        return this.leitor.getNome();
     }
-
-    public void setLeitor(String leitor) {
+    
+    public void setLeitor(Pessoa leitor) {
         this.leitor = leitor;
     }
 
@@ -81,8 +82,9 @@ public class Livro implements Publicação {
 
     @Override
     public void folhear() {
-        if ((true == this.getAberto())  &&  (this.getTotPagi() > this.getPagAtual()) ){
-            System.out.println("Folheando  paginas!\n");
+        if ((true == this.getAberto())  &&  (this.getTotPagi() > this.getPagAtual() && this.getAberto() == true && this.getPagAtual() <= this.getTotPagi()-5) ){
+            System.out.println("Folheando  paginas!(+5pág) \n");
+            this.setPagAtual(this.getPagAtual()+5);
         }else{
             System.out.println("Livro fechado ou na ultima pagina, não é possivel folhear mais!\n");
         }
@@ -90,11 +92,11 @@ public class Livro implements Publicação {
 
     @Override
     public void avançarPag() {
-        if (this.getPagAtual() > this.getTotPagi()){
+        if (this.getPagAtual() < this.getTotPagi() && this.getAberto() == true){
             this.setPagAtual(this.getPagAtual()+1);
             System.out.println("Avnaçando uma pagina\n");
         }else{
-            System.out.println("Voce esta na ultima pagina, não é possivel avançar!\n");
+            System.out.println("Voce esta na ultima pagina ou o livro esta fechado, não é possivel avançar!\n");
         }
     }
 
